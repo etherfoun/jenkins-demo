@@ -1,12 +1,16 @@
-// app.js
-const express = require('express');
+import express from 'express';
+
 const app = express();
-const port = 3000;
 
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+    res.send('Hello World!');
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
-});
+export default app;
+
+if (import.meta.url === `file://${process.argv[1]}`) {
+    const PORT = process.env.PORT || 3000;
+    app.listen(PORT, () => {
+        console.log(`Server is running on port ${PORT}`);
+    });
+}
